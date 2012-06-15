@@ -18,7 +18,7 @@ VENDORED_NUMPY="numpy-1.6.1"
 VENDORED_SCIPY="scipy-0.10.1"
 
 # If numpy or scipy exists within requirements.txt then use binaries.
-if (grep -iq -e "numpy" -e "scipy" setup.py) then
+if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
   echo "-----> Noticed numpy/scipy. Bootstrapping prebuilt binaries."
   cd .heroku
   echo "-----> heroku contents: $(ls)"
