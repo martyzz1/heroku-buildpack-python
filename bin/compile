@@ -166,6 +166,7 @@ set -e
 source $BIN_DIR/steps/pylibmc
 
 # Numpy/scipy support
+echo "Sourcing npsipy support"
 source $BIN_DIR/steps/npscipy
 
 ## stuff that's dependent on numpy/scipy
