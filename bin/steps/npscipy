@@ -9,7 +9,7 @@
 #
 # This script is invoked by [`bin/compile`](/).
 VENDORED_GIT_NAME="npscipy-binaries"
-VENDORED_GIT_REPO="git@github.com:wyn/${VENDORED_GIT_NAME}.git"
+VENDORED_GIT_REPO="git@github.com:martyzz1/${VENDORED_GIT_NAME}.git"
 # The location of the pre-compiled atlas/lapack/blas/gfortran binaries.
 VENDORED_BINARIES="npscipy"
 # the location of the bdist of numpy
@@ -25,35 +25,35 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
 
   ## check whether this has happened already
   ## set BLAS/LAPACK/ATLAS
-  if [ -d "vendor/lib/atlas-base" ]; then
-    echo "-----> Using cached binaries."
-  else
+  #if [ -d "vendor/lib/atlas-base" ]; then
+    #echo "-----> Using cached binaries."
+  #else
     echo "-----> Creating/downloading binaries."
     # Download and extract everything into target vendor directory.
     git clone ${VENDORED_GIT_REPO} > /dev/null
     echo "-----> heroku contents: $(ls)"
     echo "-----> heroku binaries contents: $(ls ${VENDORED_GIT_NAME})"
     tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_BINARIES}.tar.gz > /dev/null
-  fi
+  #fi
   export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
   export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
   export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
   export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
   export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 
-  if [ -d "venv/lib/python2.7/site-packages/numpy" ]; then
-    echo "-----> Using cached numpy."
-  else
+  #if [ -d "venv/lib/python2.7/site-packages/numpy" ]; then
+    #echo "-----> Using cached numpy."
+  #else
     echo "-----> Creating/downloading numpy bdist."
     tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz > /dev/null
-  fi
+  #fi
   
-  if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
-    echo "-----> Using cached scipy."
-  else
+  #if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
+    #echo "-----> Using cached scipy."
+  #else
     echo "-----> Creating/downloading scipy bdist."
     tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_SCIPY}.tar.gz > /dev/null
-  fi
+  #fi
   
   if [ -d ${VENDORED_GIT_NAME} ]; then
     rm -rf ${VENDORED_GIT_NAME}
