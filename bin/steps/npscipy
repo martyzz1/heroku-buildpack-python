@@ -9,7 +9,9 @@
 #
 # This script is invoked by [`bin/compile`](/).
 VENDORED_GIT_NAME="npscipy-binaries"
-VENDORED_GIT_REPO="git@github.com:martyzz1/${VENDORED_GIT_NAME}.git"
+VENDORED_GIT_REPO="git@github.com:wyn/${VENDORED_GIT_NAME}.git"
+echo VENDORED_GIT_NAME
+echo VENDORED_GIT_REPO
 # The location of the pre-compiled atlas/lapack/blas/gfortran binaries.
 VENDORED_BINARIES="npscipy"
 # the location of the bdist of numpy
